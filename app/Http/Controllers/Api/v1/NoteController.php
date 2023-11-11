@@ -2,33 +2,41 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\v1\NoteService;
+use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
-    public function all()
-    {
+    private NoteService $noteService;
 
+    public function __construct()
+    {
+        $this->noteService = new NoteService();
     }
 
-    public function store()
+    public function all(): string
     {
-
+        return $this->noteService->all()->toJson();
     }
 
-    public function show(string $id)
+    public function store(Request $request): string
     {
-
+        return $this->noteService->store($request->all())->toJson();
     }
 
-    public function update(string $id)
+    public function show(string $id): string
     {
-
+        return $this->noteService->show($id)->toJson();
     }
 
-    public function delete(string $id)
+    public function update(Request $request, string $id): string
     {
+        return $this->noteService->update($id, $request->all())->toJson();
+    }
 
+    public function delete(string $id): string
+    {
+        return $this->noteService->delete($id)->toJson();
     }
 }
