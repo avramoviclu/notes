@@ -18,23 +18,27 @@ class NoteService
         return (new Note)->create($data);
     }
 
-    public function show(string $id): Note
+    public function show(array $data): Note
     {
-        return (new Note)->findOrFail($id);
+        return (new Note)->findOrFail($data['id']);
     }
 
-    public function update(string $id, array $data): Note
+    public function update(array $data): Note
     {
-        $note = (new Note)->findOrFail($id);
+        $note = (new Note)->findOrFail($data['id']);
 
-        $note->update($data);
+        $note->title = $data['title'];
+
+        $note->description = $data['description'];
+
+        $note->save();
 
         return $note;
     }
 
-    public function delete(string $id): Note
+    public function delete(array $data): Note
     {
-        $note = (new Note)->findOrFail($id);
+        $note = (new Note)->findOrFail($data['id']);
 
         $note->delete();
 

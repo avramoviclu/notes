@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\v1\Note\DeleteNoteRequest;
+use App\Http\Requests\Api\v1\Note\ShowNoteRequest;
+use App\Http\Requests\Api\v1\Note\StoreNoteRequest;
+use App\Http\Requests\Api\v1\Note\UpdateNoteRequest;
 use App\Services\v1\NoteService;
 use Illuminate\Http\Request;
 
@@ -20,23 +24,23 @@ class NoteController extends Controller
         return $this->noteService->all()->toJson();
     }
 
-    public function store(Request $request): string
+    public function store(StoreNoteRequest $request): string
     {
         return $this->noteService->store($request->all())->toJson();
     }
 
-    public function show(string $id): string
+    public function show(ShowNoteRequest $request): string
     {
-        return $this->noteService->show($id)->toJson();
+        return $this->noteService->show($request->all())->toJson();
     }
 
-    public function update(Request $request, string $id): string
+    public function update(UpdateNoteRequest $request, string $id): string
     {
-        return $this->noteService->update($id, $request->all())->toJson();
+        return $this->noteService->update($request->all())->toJson();
     }
 
-    public function delete(string $id): string
+    public function delete(DeleteNoteRequest $request): string
     {
-        return $this->noteService->delete($id)->toJson();
+        return $this->noteService->delete($request->all())->toJson();
     }
 }
