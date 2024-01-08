@@ -8,7 +8,7 @@ use App\Http\Requests\Api\v1\Note\ShowNoteRequest;
 use App\Http\Requests\Api\v1\Note\StoreNoteRequest;
 use App\Http\Requests\Api\v1\Note\UpdateNoteRequest;
 use App\Services\v1\NoteService;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class NoteController extends Controller
 {
@@ -19,28 +19,38 @@ class NoteController extends Controller
         $this->noteService = new NoteService();
     }
 
-    public function all(): string
+    public function all(): JsonResponse
     {
-        return $this->noteService->all()->toJson();
+        $data = $this->noteService->all();
+
+        return response()->json($data);
     }
 
-    public function store(StoreNoteRequest $request): string
+    public function store(StoreNoteRequest $request): JsonResponse
     {
-        return $this->noteService->store($request->all())->toJson();
+        $data = $this->noteService->store($request->all());
+
+        return response()->json($data);
     }
 
-    public function show(ShowNoteRequest $request): string
+    public function show(ShowNoteRequest $request): JsonResponse
     {
-        return $this->noteService->show($request->all())->toJson();
+        $data = $this->noteService->show($request->all());
+
+        return response()->json($data);
     }
 
-    public function update(UpdateNoteRequest $request, string $id): string
+    public function update(UpdateNoteRequest $request): JsonResponse
     {
-        return $this->noteService->update($request->all())->toJson();
+        $data = $this->noteService->update($request->all());
+
+        return response()->json($data);
     }
 
-    public function delete(DeleteNoteRequest $request): string
+    public function delete(DeleteNoteRequest $request): JsonResponse
     {
-        return $this->noteService->delete($request->all())->toJson();
+        $data = $this->noteService->delete($request->all());
+
+        return response()->json($data);
     }
 }
