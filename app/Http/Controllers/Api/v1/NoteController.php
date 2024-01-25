@@ -7,9 +7,9 @@ use App\Http\Requests\Api\v1\Note\DeleteNoteRequest;
 use App\Http\Requests\Api\v1\Note\ShowNoteRequest;
 use App\Http\Requests\Api\v1\Note\StoreNoteRequest;
 use App\Http\Requests\Api\v1\Note\UpdateNoteRequest;
-use App\Http\Resources\Api\v1\NoteCollection;
+use App\Http\Resources\Api\v1\Note\NoteCollection;
 use App\Services\v1\NoteService;
-use App\Http\Resources\Api\v1\NoteResource;
+use App\Http\Resources\Api\v1\Note\NoteResource;
 
 class NoteController extends Controller
 {

@@ -7,9 +7,9 @@ use App\Http\Requests\Api\v1\Category\DeleteCategoryRequest;
 use App\Http\Requests\Api\v1\Category\ShowCategoryRequest;
 use App\Http\Requests\Api\v1\Category\StoreCategoryRequest;
 use App\Http\Requests\Api\v1\Category\UpdateCategoryRequest;
-use App\Http\Resources\Api\v1\CategoryCollection;
+use App\Http\Resources\Api\v1\Category\CategoryCollection;
 use App\Services\v1\CategoryService;
-use App\Http\Resources\Api\v1\CategoryResource;
+use App\Http\Resources\Api\v1\Category\CategoryResource;
 
 class CategoryController extends Controller
 {
