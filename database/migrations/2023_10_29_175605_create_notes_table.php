@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->ulid('id');
+            $table->foreignUlid('category_id');
             $table->string('title', 255);
             $table->text('description');
             $table->timestamps();
