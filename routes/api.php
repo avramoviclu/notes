@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\CategoryController;
 use App\Http\Controllers\Api\v1\NoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,14 @@ Route::prefix('v1')->group(function () {
     Route::post('/notes/{id}', [NoteController::class, 'update']);
 
     Route::delete('/notes/{id}', [NoteController::class, 'delete']);
+
+    Route::get('/categories', [CategoryController::class, 'all']);
+
+    Route::post('/categories', [CategoryController::class, 'store']);
+
+    Route::get('/categories/{id}', [CategoryController::class, 'show']);
+
+    Route::post('/categories/{id}', [CategoryController::class, 'update']);
+
+    Route::delete('/categories/{id}', [CategoryController::class, 'delete']);
 });
