@@ -19,6 +19,7 @@ class Note extends Model
     use HasUlids;
 
     protected $fillable = [
+        'category_id',
         'title',
         'description'
     ];
