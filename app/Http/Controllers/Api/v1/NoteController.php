@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\v1\Note\DeleteNoteRequest;
-use App\Http\Requests\Api\v1\Note\ShowNoteRequest;
 use App\Http\Requests\Api\v1\Note\StoreNoteRequest;
 use App\Http\Requests\Api\v1\Note\UpdateNoteRequest;
 use App\Http\Resources\Api\v1\Note\NoteCollection;
@@ -34,23 +32,23 @@ class NoteController extends Controller
         return new NoteResource($data);
     }
 
-    public function show(ShowNoteRequest $request): NoteResource
+    public function show(string $id): NoteResource
     {
-        $data = $this->noteService->show($request->all());
+        $data = $this->noteService->show($id);
 
         return new NoteResource($data);
     }
 
-    public function update(UpdateNoteRequest $request): NoteResource
+    public function update(UpdateNoteRequest $request, string $id): NoteResource
     {
-        $data = $this->noteService->update($request->all());
+        $data = $this->noteService->update($id, $request->all());
 
         return new NoteResource($data);
     }
 
-    public function delete(DeleteNoteRequest $request): NoteResource
+    public function delete(string $id): NoteResource
     {
-        $data = $this->noteService->delete($request->all());
+        $data = $this->noteService->delete($id);
 
         return new NoteResource($data);
     }
