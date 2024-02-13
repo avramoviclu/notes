@@ -11,44 +11,44 @@ use App\Http\Resources\Api\v1\Category\CategoryResource;
 
 class CategoryController extends Controller
 {
-    private CategoryService $CategoryService;
+    private CategoryService $categoryService;
 
-    public function __construct()
+    public function __construct(CategoryService $categoryService)
     {
-        $this->CategoryService = new CategoryService();
+        $this->categoryService = $categoryService;
     }
 
     public function all(): CategoryCollection
     {
-        $data = $this->CategoryService->all();
+        $data = $this->categoryService->all();
 
         return new CategoryCollection($data);
     }
 
     public function store(StoreCategoryRequest $request): CategoryResource
     {
-        $data = $this->CategoryService->store($request->all());
+        $data = $this->categoryService->store($request->all());
 
         return new CategoryResource($data);
     }
 
     public function show(string $id): CategoryResource
     {
-        $data = $this->CategoryService->show($id);
+        $data = $this->categoryService->show($id);
 
         return new CategoryResource($data);
     }
 
     public function update(UpdateCategoryRequest $request, string $id): CategoryResource
     {
-        $data = $this->CategoryService->update($id, $request->all());
+        $data = $this->categoryService->update($id, $request->all());
 
         return new CategoryResource($data);
     }
 
     public function delete(string $id): CategoryResource
     {
-        $data = $this->CategoryService->delete($id);
+        $data = $this->categoryService->delete($id);
 
         return new CategoryResource($data);
     }
