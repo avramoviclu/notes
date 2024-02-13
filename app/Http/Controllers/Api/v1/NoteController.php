@@ -13,9 +13,9 @@ class NoteController extends Controller
 {
     private NoteService $noteService;
 
-    public function __construct()
+    public function __construct(NoteService $noteService)
     {
-        $this->noteService = new NoteService();
+        $this->noteService = $noteService;
     }
 
     public function all(): NoteCollection
