@@ -12,7 +12,7 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,6 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|ulid',
             'title' => 'required|string|max:255',
             'description' => 'required|string'
         ];

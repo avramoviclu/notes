@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\v1\Category\DeleteCategoryRequest;
-use App\Http\Requests\Api\v1\Category\ShowCategoryRequest;
 use App\Http\Requests\Api\v1\Category\StoreCategoryRequest;
 use App\Http\Requests\Api\v1\Category\UpdateCategoryRequest;
 use App\Http\Resources\Api\v1\Category\CategoryCollection;
@@ -34,23 +32,23 @@ class CategoryController extends Controller
         return new CategoryResource($data);
     }
 
-    public function show(ShowCategoryRequest $request): CategoryResource
+    public function show(string $id): CategoryResource
     {
-        $data = $this->CategoryService->show($request->all());
+        $data = $this->CategoryService->show($id);
 
         return new CategoryResource($data);
     }
 
-    public function update(UpdateCategoryRequest $request): CategoryResource
+    public function update(UpdateCategoryRequest $request, string $id): CategoryResource
     {
-        $data = $this->CategoryService->update($request->all());
+        $data = $this->CategoryService->update($id, $request->all());
 
         return new CategoryResource($data);
     }
 
-    public function delete(DeleteCategoryRequest $request): CategoryResource
+    public function delete(string $id): CategoryResource
     {
-        $data = $this->CategoryService->delete($request->all());
+        $data = $this->CategoryService->delete($id);
 
         return new CategoryResource($data);
     }

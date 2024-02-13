@@ -18,30 +18,30 @@ class CategoryService
         return (new Category)->create($data);
     }
 
-    public function show(array $data): Category
+    public function show(string $id): Category
     {
-        return (new Category)->findOrFail($data['id']);
+        return (new Category)->findOrFail($id);
     }
 
-    public function update(array $data): Category
+    public function update(string $id, array $data): Category
     {
-        $Category = (new Category)->findOrFail($data['id']);
+        $category = (new Category)->findOrFail($id);
 
-        $Category->title = $data['title'];
+        $category->title = $data['title'];
 
-        $Category->description = $data['description'];
+        $category->description = $data['description'];
 
-        $Category->save();
+        $category->save();
 
-        return $Category;
+        return $category;
     }
 
-    public function delete(array $data): Category
+    public function delete(string $id): Category
     {
-        $Category = (new Category)->findOrFail($data['id']);
+        $category = (new Category)->findOrFail($id);
 
-        $Category->delete();
+        $category->delete();
 
-        return $Category;
+        return $category;
     }
 }
