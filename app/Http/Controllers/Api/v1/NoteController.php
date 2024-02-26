@@ -30,7 +30,7 @@ class NoteController extends Controller
 
         } catch(Exception $e) {
 
-            return response()->json(['message' => 'Something went wrong'], $e->getCode());
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
         }
     }
 
@@ -49,7 +49,7 @@ class NoteController extends Controller
 
             DB::rollBack();
 
-            return response()->json(['message' => 'Something went wrong'], $e->getCode());
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
         }
     }
 
@@ -62,7 +62,7 @@ class NoteController extends Controller
 
         } catch(Exception $e) {
 
-            return response()->json(['message' => 'Something went wrong'], $e->getCode());
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
         }
     }
 
@@ -81,7 +81,7 @@ class NoteController extends Controller
 
             DB::rollBack();
 
-            return response()->json(['message' => 'Something went wrong'], $e->getCode());
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
         }
     }
 
@@ -100,7 +100,7 @@ class NoteController extends Controller
 
             DB::rollBack();
 
-            return response()->json(['message' => 'Something went wrong'], $e->getCode());
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
         }
     }
 }
