@@ -6,6 +6,7 @@ namespace App\Services\v1;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
+use Exception;
 
 class CategoryService
 {
@@ -20,12 +21,22 @@ class CategoryService
 
     public function show(string $id): Category
     {
-        return (new Category)->findOrFail($id);
+        $category = (new Category)->find($id);
+
+        if ($category === null) {
+            throw new Exception('Category not found', 404);
+        }
+
+        return $category;
     }
 
     public function update(string $id, array $data): Category
     {
-        $category = (new Category)->findOrFail($id);
+        $category = (new Category)->find($id);
+
+        if ($category === null) {
+            throw new Exception('Category not found', 404);
+        }
 
         $category->title = $data['title'];
 
@@ -38,7 +49,11 @@ class CategoryService
 
     public function delete(string $id): Category
     {
-        $category = (new Category)->findOrFail($id);
+        $category = (new Category)->find($id);
+
+        if ($category === null) {
+            throw new Exception('Category not found', 404);
+        }
 
         $category->delete();
 

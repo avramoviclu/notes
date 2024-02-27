@@ -8,6 +8,9 @@ use App\Http\Requests\Api\v1\Category\UpdateCategoryRequest;
 use App\Http\Resources\Api\v1\Category\CategoryCollection;
 use App\Services\v1\CategoryService;
 use App\Http\Resources\Api\v1\Category\CategoryResource;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class CategoryController extends Controller
 {
@@ -18,38 +21,68 @@ class CategoryController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    public function all(): CategoryCollection
+    public function all(): CategoryCollection|JsonResponse
     {
-        $data = $this->categoryService->all();
+        try{
+            $data = $this->categoryService->all();
 
-        return new CategoryCollection($data);
+            return new CategoryCollection($data);
+
+        } catch(Exception $e) {
+
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
+        }
     }
 
-    public function store(StoreCategoryRequest $request): CategoryResource
+    public function store(StoreCategoryRequest $request): CategoryResource|JsonResponse
     {
-        $data = $this->categoryService->store($request->all());
+        try {
+            $data = $this->categoryService->store($request->all());
 
-        return new CategoryResource($data);
+            return new CategoryResource($data);
+
+        } catch(Exception $e) {
+
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
+        }
     }
 
-    public function show(string $id): CategoryResource
+    public function show(string $id): CategoryResource|JsonResponse
     {
-        $data = $this->categoryService->show($id);
+        try {
+            $data = $this->categoryService->show($id);
 
-        return new CategoryResource($data);
+            return new CategoryResource($data);
+
+        } catch(Exception $e) {
+
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
+        }
     }
 
-    public function update(UpdateCategoryRequest $request, string $id): CategoryResource
+    public function update(UpdateCategoryRequest $request, string $id): CategoryResource|JsonResponse
     {
-        $data = $this->categoryService->update($id, $request->all());
+        try {
+            $data = $this->categoryService->update($id, $request->all());
 
-        return new CategoryResource($data);
+            return new CategoryResource($data);
+
+        } catch(Exception $e) {
+
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
+        }
     }
 
-    public function delete(string $id): CategoryResource
+    public function delete(string $id): CategoryResource|JsonResponse
     {
-        $data = $this->categoryService->delete($id);
+        try {
+            $data = $this->categoryService->delete($id);
 
-        return new CategoryResource($data);
+            return new CategoryResource($data);
+
+        } catch(Exception $e) {
+
+            return response()->json(['message' => $e->getMessage()], $e->getCode());
+        }
     }
 }
