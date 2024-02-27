@@ -21,7 +21,13 @@ class NoteService
 
     public function show(string $id): Note
     {
-        return (new Note)->findOrFail($id);
+        $note = (new Note)->find($id);
+
+        if ($note === null) {
+            throw new Exception('Note not found', 404);
+        }
+
+        return $note;
     }
 
     public function update(string $id, array $data): Note
